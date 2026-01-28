@@ -2,7 +2,7 @@ from pathlib import Path
 
 # ===== 경로(하드코딩) =====
 DATASET_CSV = Path(r"C:\Users\new\ETRI 김예원\과제data\traffic-evac-surrogate\dataset\dataset_final.csv")
-MODEL_DIR   = Path(r"C:\Users\new\ETRI 김예원\과제data\traffic-evac-surrogate\models")
+MODEL_DIR   = Path(r"C:\Users\new\ETRI 김예원\과제data\traffic-evac-surrogate\models_xgboost")
 
 # ===== 컬럼 정의 =====
 DROP_COLS = [
@@ -11,8 +11,8 @@ DROP_COLS = [
 
 # 입력(X)에서 반드시 포함시키고 싶은 컬럼 prefix들
 X_PREFIXES = [
-    #"state_variant_",
-    #"policy_",
+    "state_variant_",
+    "policy_",
     "alloc_",
     "total_assigned",
     "dist_",
@@ -23,12 +23,11 @@ X_PREFIXES = [
 Y_COLS = [
     "n_evac_arrived",
     "arrival_rate",
-    #"tt_mean", "tt_median", "tt_p90",
-    #"tt_max", "tt_min",
-    #"depart_mean",
-    #"arrive_mean", "arrive_p90",
+    "tt_mean", "tt_median", "tt_p90", "tt_max", "tt_min",
+    "depart_mean",
+    "arrive_mean", "arrive_p90",
     "links_mean", "links_p90",
-    #"maxseq_mean", "maxseq_p90",
+    "maxseq_mean", "maxseq_p90",
 ]
 
 RANDOM_SEED = 42
