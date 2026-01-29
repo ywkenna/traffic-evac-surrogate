@@ -21,7 +21,7 @@ THIS_DIR = Path(__file__).resolve().parent
 REPO_ROOT = THIS_DIR.parent
 
 DATA_DIR = REPO_ROOT / "data"
-DEFAULT_COLLECTED = REPO_ROOT / "dataset" / "collected_metrics.csv"   # 너는 data에 두는 걸 추천
+DEFAULT_COLLECTED = REPO_ROOT / "dataset" / "collected_metrics.csv" 
 DEFAULT_STATE = DATA_DIR / "state25_zone32_N7000_pmz0_5km.csv"
 DEFAULT_POLICY = DATA_DIR / "policy40_shelter_ratio.csv"
 DEFAULT_CASE = DATA_DIR / "case1000_zone_shelter_alloc_cap2000.csv"
@@ -305,7 +305,7 @@ def main():
     # ---- sanity: 누락 체크(있어도 저장은 하되, 경고만)
     missing_state = ds["state_id"].isna().sum()
     missing_policy = ds["policy_id"].isna().sum()
-    # (위는 사실상 0일 텐데, 병합 실패 시 feature NaN이 생길 수 있음)
+    # (위는 사실상 0, 병합 실패 시 feature NaN이 생길 수 있음)
     n_feat_nan = int(ds.isna().sum().sum())
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)

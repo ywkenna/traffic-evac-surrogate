@@ -174,9 +174,9 @@ def main():
     df["policy_id"] = df["policy_id"].astype("int64")
 
     # ====== 자리 맞춰 나열(중요) ======
-    # state_id 0~25, policy_id 0~39 풀 그리드 만든 다음 merge
+    # state_id 0~24, policy_id 0~39 풀 그리드 만든 다음 merge
     full = pd.MultiIndex.from_product(
-        [range(0, 26), range(0, 40)],
+        [range(0, 25), range(0, 40)],
         names=["state_id", "policy_id"]
     ).to_frame(index=False)
 

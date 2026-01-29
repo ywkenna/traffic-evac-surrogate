@@ -16,7 +16,7 @@ OUTPUT_DIR = Path("C:/Users/new/ETRI 김예원/과제data/traffic-evac-surrogate
 EVAC_AREA_XLSX = Path("C:/Users/new/ETRI 김예원/과제data/traffic-evac-surrogate/data/evac-area.xlsx")
 
 # trajectory 파일 패턴
-FILE_PATTERN = "sorted_2026shelterseek_*_*_trajectory.csv"
+FILE_PATTERN = "sorted_2026shelterseek_12_*_trajectory.csv"
 
 # evac-area.xlsx 안의 대피소 edge 컬럼명
 EVAC_EDGE_COL = "edge_id"

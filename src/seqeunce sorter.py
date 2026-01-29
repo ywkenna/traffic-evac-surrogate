@@ -4,7 +4,7 @@ from pathlib import Path
 from tqdm import tqdm # 파일이 많을 경우 진행바 표시 (설치: pip install tqdm)
 
 # 1. 설정
-input_pattern = "C:/Users/new/ETRI 김예원/과제data/traffic-evac-surrogate/sim-outputs/2026shelterseek_*_*/2026shelterseek_*_*_trajectory.csv"
+input_pattern = "C:/Users/new/ETRI 김예원/과제data/traffic-evac-surrogate/sim-outputs/2026shelterseek_12_*/2026shelterseek_*_*_trajectory.csv"
 output_prefix = "C:/Users/new/ETRI 김예원/과제data/traffic-evac-surrogate/sim-sorted/sorted_"
 
 # 2. 파일 목록 가져오기 및 확인

@@ -122,7 +122,7 @@ def main():
         
         r2 = r2_score(y_true, y_pred)
         style = STYLES[yname]
-        label_str = f"{style['label']} ($R^2$={r2:.3f})"
+        label_str = f"{style['label']}"# ($R^2$={r2:.3f})"
         
         # 산점도 그리고 핸들 저장
         scatter = ax.scatter(y_true_norm, y_pred_norm, 
