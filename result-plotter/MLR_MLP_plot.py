@@ -5,8 +5,8 @@ import numpy as np
 plt.rcParams["font.family"] = "Times New Roman"
 
 metrics = ['Arrival Count', 'Arrival Rate', 'Mean Path', 'p90 Path']
-mlr_r2 = [0.2106, 0.2106, 0.2397, 0.1558]
-mlp_r2 = [0.2570, 0.2586, 0.3396, 0.2722]
+mlr_r2 = [0.195, 0.195, 0.265, 0.249]
+mlp_r2 = [0.35, 0.34, 0.55, 0.46]
 
 x = np.arange(len(metrics))
 width = 0.35
@@ -21,7 +21,7 @@ ax.set_title('Performance Comparison: MLR vs. MLP', fontsize=14, fontweight='bol
 ax.set_xticks(x)
 ax.set_xticklabels(metrics, fontsize=11)
 ax.legend(fontsize=11)
-ax.set_ylim(0, 0.45) # 상단 여유 공간
+ax.set_ylim(0, 0.7) # 상단 여유 공간
 
 # 수치 표시
 def autolabel(rects):

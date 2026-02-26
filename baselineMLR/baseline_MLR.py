@@ -8,8 +8,8 @@ import pickle
 # 1. 데이터 로드 및 전처리 (기존 로직 활용)
 def load_and_preprocess():
     # 데이터 경로 및 컬럼 설정은 기존 환경에 맞춰 수정하세요.
-    df = pd.read_csv("C:/Users/new/ETRI 김예원/과제data/traffic-evac-surrogate/dataset/dataset_final.csv")
-    X_cols = [col for col in df.columns if col.startswith(('alloc_', 'total_assigned', 'dist_', 'state_zone'))]
+    df = pd.read_csv("C:/Users/new/ETRI 김예원/과제data/traffic-evac-surrogate/dataset/dataset_final2.csv")
+    X_cols = [col for col in df.columns if col.startswith(('alloc_', 'total_assigned', 'dist_', 'state_zone', 'al_'))]
     Y_cols = ["n_evac_arrived", "arrival_rate", "links_mean", "links_p90"]
     
     X = df[X_cols].values.astype(np.float32)
@@ -42,8 +42,8 @@ def main():
 
         # --- [Proposed] MLP (기존 결과값 입력) ---
         # 실제 환경에서는 모델 로드 후 예측 수행
-        mlp_r2_list = [0.2570, 0.2586, 0.3396, 0.2722] # 예시 수치
-        mlp_rmse_list = [286.3, 0.0409, 2.3794, 4.6695]
+        mlp_r2_list = [0.35, 0.34, 0.55, 0.46] # 예시 수치
+        mlp_rmse_list = [323.5, 0.045, 3.892, 2.421]
         
         results.append({
             "Metric": col_name,

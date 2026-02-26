@@ -52,6 +52,24 @@ class MLP(nn.Module):
 def rmse(a, b):
     return float(np.sqrt(np.mean((a - b) ** 2)))
 
+def top_k_recall(y_true, y_pred, k_ratio=0.1):
+    """
+    실제값 상위 k_ratio(예: 0.1 = 10%)에 해당하는 인덱스와
+    예측값 상위 k_ratio에 해당하는 인덱스의 교집합 비율을 계산합니다.
+    """
+    n = len(y_true)
+    k = max(1, int(n * k_ratio)) # 최소 1개는 보장
+    
+    # argsort는 오름차순 정렬이므로, 뒤에서부터 k개를 가져오면 상위 k개 인덱스가 됩니다.
+    idx_true = set(np.argsort(y_true)[-k:])
+    idx_pred = set(np.argsort(y_pred)[-k:])
+    
+    # 실제 상위 10% 중 예측 상위 10%에 포함된 개수
+    hits = len(idx_true.intersection(idx_pred))
+    
+    return hits / k
+
+
 def main():
     if not DATASET_CSV.exists():
         raise FileNotFoundError(f"dataset_final.csv not found: {DATASET_CSV}")
@@ -161,6 +179,10 @@ def main():
     predicted = pred_test # 실제 단위 예측값
 
     print("\n=== 상세 테스트 결과 (Test Evaluation) ===")
+
+    # [추가] 확인할 Top-K 비율 리스트 (5%, 10%, 20%, 50%)
+    recall_ratios = [0.05, 0.10, 0.20, 0.50]
+
     for i, yname in enumerate(Y_COLS):
         y_true = actual[:, i]
         y_pred = predicted[:, i]
@@ -171,6 +193,11 @@ def main():
         
         # [추가된 부분] Spearman correlation 계산
         rho, p_val = spearmanr(y_true, y_pred)
+
+        # [추가] 비율별 Recall 계산
+        recalls = {}
+        for ratio in recall_ratios:
+            recalls[ratio] = top_k_recall(y_true, y_pred, k_ratio=ratio)
         
         try:
             mape = mean_absolute_percentage_error(y_true, y_pred) * 100
@@ -183,8 +210,14 @@ def main():
         print(f"  - MAE:        {mae:.6f}")
         print(f"  - R² Score:   {r2:.4f}")
         # [추가된 부분] 결과 출력 포맷팅
-        print(f"  - Spearman ρ: {rho:.4f} (p-value: {p_val:.4f})")
-        print(f"  - 오차율(MAPE): {mape_str}")
+        print(f"  - Spearman ρ: {rho:.4f} (p-value: {p_val:.3e})")
+        
+    # [추가] 리스트업된 Recall 출력
+        for ratio in recall_ratios:
+            pct = int(ratio * 100)
+            print(f"  - Top-{pct:2d}% Recall: {recalls[ratio]:.4f} ({recalls[ratio]*100:5.1f}%)")
+
+        print(f"  - 오차율(MAPE):   {mape_str}")
         print("-" * 30)
 
     # Baseline 비교 (원본 스케일 기준)

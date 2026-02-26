@@ -30,9 +30,9 @@ plt.rcParams.update({
 # 2. 경로 및 설정
 # ==========================================
 BASE_PATH = Path(r"C:\Users\new\ETRI 김예원\과제data\traffic-evac-surrogate")
-DATASET_PATH = BASE_PATH / "dataset" / "dataset_final.csv"
+DATASET_PATH = BASE_PATH / "dataset" / "dataset_final2.csv"
 MODEL_DIR = BASE_PATH / "models"
-PLOT_DIR = BASE_PATH / "plots(4y_unified)" # 저장 폴더명 변경
+PLOT_DIR = BASE_PATH / "plots(4y_unified)" 
 PLOT_DIR.mkdir(parents=True, exist_ok=True)
 
 HIDDEN_DIMS = [64, 128, 64]
@@ -40,13 +40,11 @@ DROPOUT = 0.4
 RANDOM_SEED = 42
 TEST_SIZE = 0.2
 
-Y_COLS = ["n_evac_arrived", "arrival_rate", "links_mean", "links_p90"]
+Y_COLS = ["links_mean", "links_p90"]
 
 # 시각화 스타일 설정 (색상, 마커, 표시 이름)
 STYLES = {
-    "n_evac_arrived": {"color": "#e41a1c", "marker": "o", "label": "Arrival Count"},
-    "arrival_rate":   {"color": "#377eb8", "marker": "s", "label": "Arrival Rate"},
-    "links_mean":     {"color": "#4daf4a", "marker": "^", "label": "Mean Path Length Proxy"},
+    "links_mean":     {"color": "#4daf4a", "marker": "D", "label": "Mean Path Length Proxy"},
     "links_p90":      {"color": "#984ea3", "marker": "D", "label": "p90 Path Length Proxy"}
 }
 
@@ -79,6 +77,17 @@ def main():
 
     # 2. 데이터 준비
     df = pd.read_csv(DATASET_PATH)
+
+    # -----------------------------------------------------------
+    # [추가된 핵심 전처리] 32개 Zone -> 8개 Sector로 합산 (학습 코드와 동일)
+    # -----------------------------------------------------------
+    sectors = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
+    for i, sector_name in enumerate(sectors):
+        zone_ids = [i + (j * 8) for j in range(4)]
+        zone_cols = [f"state_zone{zid}_alloc" for zid in zone_ids]
+        df[f"sector_{sector_name}_total"] = df[zone_cols].sum(axis=1)
+    # -----------------------------------------------------------
+
     X_cols = meta["x_cols"] 
     X = df[X_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).values.astype(np.float32)
     Y_orig = df[Y_COLS].apply(pd.to_numeric, errors="coerce").fillna(0.0).values.astype(np.float32)
@@ -89,8 +98,12 @@ def main():
 
     # 3. 모델 로드 및 예측
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    # meta.json에 저장된 실제 학습 당시의 hidden_dims를 사용!
+    actual_hidden_dims = meta.get("hidden_dims", [32, 32]) # 만약 없다면 기본값 [32, 32] 사용
+    
     model = MLP(in_dim=len(X_cols), out_dim=len(Y_COLS),
-                hidden_dims=HIDDEN_DIMS, dropout=DROPOUT).to(device)
+                hidden_dims=actual_hidden_dims, dropout=DROPOUT).to(device)
     
     model.load_state_dict(torch.load(MODEL_DIR / "surrogate_latest.pt", map_location=device))
     model.eval()
