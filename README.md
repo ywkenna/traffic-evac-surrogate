@@ -28,6 +28,7 @@
   - baseline_MLR.py를 사용하여 MLR과의 성능 비교 가능(모델 성능 입력 필요)
   - plotting 관련 코드는 result-plotter 에 위치
 
+```
 ## 📦 파일 구조
 ┣ 📂 baselineMLR
 ┣ ┗ 📜 baseline_MLR.py
@@ -72,3 +73,4 @@
 ┃ ┣ 📜 policy-state-allocation-template-gene...
 ┃ ┣ 📜 policy-state-allocation.py
 ┗ ┗ 📜 state_policy_template_al.xlsx
+```
