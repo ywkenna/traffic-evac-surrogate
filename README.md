@@ -18,8 +18,8 @@
 
 * B. 학습 데이터셋 구축 후 실행하는 경우
 * 1. sim-outputs에 시뮬레이션 결과 저장(폴더로).
-* 2. src/ 내에 위치한 collect_results.py -> build_dataset.py -> data_add_dist.py -> dataset_final_generator.py 순으로 실행(4개 파일 모두 환경에 맞게 경로 수정 필요).
-* 3. 2과정 이후 생성된 dataset_final.csv 에는 allocation 정보(구역-대피소 쌍의 대피 인원)가 존재하지 않으므로 수동으로 추가해주어야 함.
+  2. src/ 내에 위치한 collect_results.py -> build_dataset.py -> data_add_dist.py -> dataset_final_generator.py 순으로 실행(4개 파일 모두 환경에 맞게 경로 수정 필요).
+  3. 2과정 이후 생성된 dataset_final.csv 에는 allocation 정보(구역-대피소 쌍의 대피 인원)가 존재하지 않으므로 수동으로 추가해주어야 함.
   4. src-al-generator/policy-state-allocationt-template-generator.py 실행하여 state_policy_template.xlsx 생성.
   5. src-al-generator/policy-state-allocation.py 실행하여 policy-state-allocation.xlsx 생성 후, 해당 파일 내용 복사하여 dataset_final 뒤에 추가.
   6. A. 과정 통하여 모델 학습 및 확인.
