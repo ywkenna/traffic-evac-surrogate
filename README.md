@@ -38,11 +38,11 @@
 ┃ ┣ 📜 policy40_shelter_ratio.csv
 ┃ ┣ 📜 shelter_zone_dist.csv
 ┃ ┗ 📜 state25_zone32_N7000_pmz0_5km.csv
-┣ 📂 dataset
+┣ 📂 dataset (데이터 보안상 제공 X, 삭제됨.)
 ┃ ┣ 📂 processed
 ┃ ┃ ┗ 📜 dataset.csv
 ┃ ┣ 📜 collected_metrics.csv
-┃ ┣ 📜 dataset_final.csv
+┃ ┣ 📜 dataset_final.csv 
 ┃ ┣ 📜 dataset_final2.csv
 ┃ ┗ 📜 dataset_with_dist.csv
 ┣ 📂 model_src
