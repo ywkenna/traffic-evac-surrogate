@@ -9,7 +9,7 @@ DROP_COLS = [
     "src_file",  # 누수 방지
 ]
 
-#입력(X)에서 반드시 포함시키고 싶은 컬럼 prefix들
+#입력(X)에서 반드시 포함시키고 싶은 컬럼 prefix들. 그러나 구역 통합 과정에서 재정의되므로 수정이 필요할 경우 train_surrogate.py 수정 요망.
 X_PREFIXES = [
     "state_variant_",
     "policy_",
@@ -37,7 +37,7 @@ Y_COLS = [
 RANDOM_SEED = 43
 TEST_SIZE = 0.1
 
-# 학습 하이퍼파라미터
+# 학습 하이퍼파라미터, dataset_final2.csv 기준으로 튜닝되었음
 EPOCHS = 600
 BATCH_SIZE = 64
 LR = 1e-3

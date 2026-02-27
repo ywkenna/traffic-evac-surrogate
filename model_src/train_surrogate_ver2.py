@@ -60,7 +60,7 @@ def top_k_recall(y_true, y_pred, k_ratio=0.1):
     n = len(y_true)
     k = max(1, int(n * k_ratio)) # 최소 1개는 보장
     
-    # argsort는 오름차순 정렬이므로, 뒤에서부터 k개를 가져오면 상위 k개 인덱스가 됩니다.
+    # argsort는 오름차순 정렬이므로, 뒤에서부터 k개를 가져오면 상위 k개 인덱스가 됨
     idx_true = set(np.argsort(y_true)[-k:])
     idx_pred = set(np.argsort(y_pred)[-k:])
     
@@ -84,7 +84,12 @@ def main():
         zone_cols = [f"state_zone{zid}_alloc" for zid in zone_ids]
         df[f"sector_{sector_name}_total"] = df[zone_cols].sum(axis=1)
 
+    #=================여기서 X가 재정의되므로 X의 수정은 여기서===========================
+
     X_PREFIXES_LOCAL = ["total_assigned", "sector_", "alloc_", "dist_", "policy", "state_zone", "al_"]
+
+    #==================================================================================
+
     x_cols = pick_x_columns(df, X_PREFIXES_LOCAL)
 
     for y in Y_COLS:
@@ -229,8 +234,6 @@ def main():
         r2_base = r2_score(y_true, y_pred_base)
         rmse_base = np.sqrt(mean_squared_error(y_true, y_pred_base))
         print(f"[{yname}] baseline R²={r2_base:.4f}, RMSE={rmse_base:.4f}")
-
-    # === Baseline 출력 코드 바로 아래에 추가하세요 ===
 
     # 1. 스케일러 저장 (학습된 통계량을 나중에 그대로 쓰기 위함)
     with open(MODEL_DIR / "x_scaler.pkl", "wb") as f:
