@@ -33,17 +33,17 @@
 ┣ 📂 baselineMLR
 ┣ ┗ 📜 baseline_MLR.py
 ┣ 📂 data
-┃ ┣ 📜 **case1000_zone_shelter_alloc_cap2000.csv**
+┃ ┣ 📜 case1000_zone_shelter_alloc_cap2000.csv
 ┃ ┣ 📜 evac-area.xlsx
 ┃ ┣ 📜 policy40_shelter_ratio.csv
-┃ ┣ 📜 **shelter_zone_dist.csv**
+┃ ┣ 📜 shelter_zone_dist.csv
 ┃ ┗ 📜 state25_zone32_N7000_pmz0_5km.csv
 ┣ 📂 dataset
 ┃ ┣ 📂 processed
 ┃ ┃ ┗ 📜 dataset.csv
 ┃ ┣ 📜 collected_metrics.csv
 ┃ ┣ 📜 dataset_final.csv
-┃ ┣ 📜 **dataset_final2.csv**
+┃ ┣ 📜 dataset_final2.csv
 ┃ ┗ 📜 dataset_with_dist.csv
 ┣ 📂 model_src
 ┃ ┣ 📂 __pycache__
@@ -51,7 +51,7 @@
 ┃ ┃ ┗ 📜 train_surrogate.cpython-314.pyc
 ┃ ┣ 📜 config_surrogate.py
 ┃ ┣ 📜 predict_surrogate.py
-┃ ┣ 📜** train_surrogate_ver2.py**
+┃ ┣ 📜 train_surrogate_ver2.py
 ┃ ┣ 📜 train_surrogate.py
 ┃ ┗ 📜 train_surrogate2.py
 ┣ 📂 models
@@ -61,7 +61,7 @@
 ┣ 📂 sim-evac-only
 ┣ 📂 sim-outputs
 ┣ 📂 sim-sorted
-**┣ 📂 src**
+┣ 📂 src
 ┃ ┣ 📜 build_dataset.py
 ┃ ┣ 📜 collect_results.py
 ┃ ┣ 📜 dataset_add_dist.py
@@ -70,7 +70,7 @@
 ┃ ┗ 📜 seqeunce sorter.py
 ┣ 📂 src-al-generator
 ┃ ┣ 📜 filled_state_policy_template_al.xlsx
-┃ ┣ 📜 policy-state-allocation-template-gene...
+┃ ┣ 📜 policy-state-allocation-template-generator.py
 ┃ ┣ 📜 policy-state-allocation.py
 ┗ ┗ 📜 state_policy_template_al.xlsx
 ```
