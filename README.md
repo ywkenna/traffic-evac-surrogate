@@ -58,9 +58,9 @@
 ┣ 📂 models_xgboost
 ┣ 📂 models_xgboost_src
 ┣ 📂 result-plotter
-┣ 📂 sim-evac-only
-┣ 📂 sim-outputs
-┣ 📂 sim-sorted
+┣ 📂 sim-evac-only (생성 필요)
+┣ 📂 sim-outputs (생성 필요, 데이터는 보안상 제공하지 않음)
+┣ 📂 sim-sorted (생성 필요)
 ┣ 📂 src
 ┃ ┣ 📜 build_dataset.py
 ┃ ┣ 📜 collect_results.py
